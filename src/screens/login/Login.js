@@ -5,7 +5,7 @@ class Login extends Component{
     render(){
         return (
             <header className="app-header">
-
+                <span className="header-logo">Image Viewer</span>
             </header>
         )
     }
