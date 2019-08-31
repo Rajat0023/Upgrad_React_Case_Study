@@ -34,8 +34,18 @@ class Login extends Component{
         super();
         this.state={
             username: "",
-            loginpassword: ""
+            loginPassword: "",
+            usernameRequired: "dispNone",
+            loginPasswordRequired: "dispNone"
         }
+    }
+
+    loginClickHandler= () => {
+        this.state.username === "" ? this.setState({usernameRequired: 'dispBlock'}) 
+        : this.setState({usernameRequired: 'dispNone'})
+
+        this.state.loginPassword === "" ? this.setState({loginPasswordRequired: 'dispBlock'}) 
+        : this.setState({loginPasswordRequired: 'dispNone'})
     }
 
     inputUserNameChangeHandler =(e) => {
@@ -66,13 +76,19 @@ class Login extends Component{
                         <FormControl required className={classes.formControl}>
                         <InputLabel htmlFor='username'>UserName</InputLabel>
                         <Input id='username' type='text' username = {this.state.username} 
-                        onChange={this.inputUserNameChangeHandler} />         
+                        onChange={this.inputUserNameChangeHandler} /> 
+                        <FormHelperText className={this.state.usernameRequired}> <span className='red'>
+                            required </span>
+                        </FormHelperText>        
                     </FormControl> <br /> <br />
 
                     <FormControl required className={classes.formControl}>
                         <InputLabel htmlFor='loginPassword'>Password</InputLabel>
-                        <Input id='loginPassword' type='password' loginpassword={this.state.loginPassword}
-                         onChange={this.inputLoginPasswordChangeHandler} />               
+                        <Input id='loginPassword' type='password' loginPassword={this.state.loginPassword}
+                         onChange={this.inputLoginPasswordChangeHandler} /> 
+                         <FormHelperText className={this.state.loginPasswordRequired}> <span className='red'>
+                            required </span>
+                        </FormHelperText>              
                     </FormControl><br /> <br />
                     <Button className={classes.loginBtn} variant='contained' color='primary' onClick={this.loginClickHandler}>LOGIN</Button>
                     </CardContent>
