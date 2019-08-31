@@ -29,6 +29,23 @@ const styles = theme => ({
 
 })
 class Login extends Component{
+
+    constructor() {
+        super();
+        this.state={
+            username: "",
+            loginpassword: ""
+        }
+    }
+
+    inputUserNameChangeHandler =(e) => {
+        this.setState({username: e.target.value})
+    }
+
+    inputLoginPasswordChangeHandler =(e) => {
+        this.setState({loginPassword: e.target.value})
+    }
+
     render() {
         const {classes} = this.props;
 
@@ -48,12 +65,14 @@ class Login extends Component{
                         </FormControl> <br />
                         <FormControl required className={classes.formControl}>
                         <InputLabel htmlFor='username'>UserName</InputLabel>
-                        <Input id='username' type='text' />         
+                        <Input id='username' type='text' username = {this.state.username} 
+                        onChange={this.inputUserNameChangeHandler} />         
                     </FormControl> <br /> <br />
-                    
+
                     <FormControl required className={classes.formControl}>
                         <InputLabel htmlFor='loginPassword'>Password</InputLabel>
-                        <Input id='loginPassword' type='password' />               
+                        <Input id='loginPassword' type='password' loginpassword={this.state.loginPassword}
+                         onChange={this.inputLoginPasswordChangeHandler} />               
                     </FormControl><br /> <br />
                     <Button className={classes.loginBtn} variant='contained' color='primary' onClick={this.loginClickHandler}>LOGIN</Button>
                     </CardContent>
